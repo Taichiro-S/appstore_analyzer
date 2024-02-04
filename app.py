@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 # ステップ2で作成した関数をインポート
 from fetch_apps import fetch_app_data

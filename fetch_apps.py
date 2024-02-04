@@ -10,7 +10,7 @@ ITUNES_STORE_API_ENDPOINT = 'https://itunes.apple.com/search?'
     # }
     # response = requests.get(base_url, params=params, timeout=10)
     # return response.json()
-def fetch_app_data(term,country,sort_order='mostPopular', limit=100):
+def fetch_app_data(term,country,sort_order, limit, timeout):
     params = {
         'term': term,
         'entity': 'software',
@@ -19,7 +19,7 @@ def fetch_app_data(term,country,sort_order='mostPopular', limit=100):
         'media': 'software',
         'lang': 'ja_jp'
     }
-    response = requests.get(ITUNES_STORE_API_ENDPOINT, params=params, timeout=5)
+    response = requests.get(ITUNES_STORE_API_ENDPOINT, params=params, timeout=timeout)
     result = []
     for app in response.json()['results']:
         # Check if the app supports Japanese

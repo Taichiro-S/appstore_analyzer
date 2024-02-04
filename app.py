@@ -1,17 +1,23 @@
 import streamlit as st
 import pandas as pd
 # import matplotlib.pyplot as plt
-
-# ステップ2で作成した関数をインポート
 from fetch_apps import fetch_app_data
+
+COUNTRY = 'JP'
+TIMEOUT = 30
+SEARCH_COUNT_LIMIT = 100
+SORT_ORDER = 'mostPopular'
 
 # Streamlitアプリのタイトル
 st.title('iTunes Store Search Data Visualization')
 
 # ユーザー入力
 search_term = st.text_input('Search Term', 'カレンダー')
-data = fetch_app_data(search_term, 'JP')
-
+try:
+    data = fetch_app_data(search_term, 'JP', 'mostPopular', SEARCH_COUNT_LIMIT, TIMEOUT)
+except Exception as e:
+    st.write('Error:', e)
+    data = []
 # データをPandas DataFrameに変換
 df = pd.DataFrame(data)
 
